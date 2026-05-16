@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Showcase</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Inter font for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo-text"><a class="text" href="index.html">Bayerische Motoren Werke</a></div>
+        <img src="assets/bmw_logo_1778868814240.png" alt="BMW Logo" class="bmw-logo">
+    </header>
+
+    <main>
+        <!-- Home Screen -->  
+        <section id="home-view" class="view active">
+            <div class="hero-content">
+                <button id="enter-btn" class="glass-btn"> 
+                    <img src="assets/bmw_button_1778869030112.png" alt="Enter Symbol">
+                </button>
+            </div>
+        </section>
+
+        <!-- Models Screen -->
+        <section id="models-view" class="view hidden">
+            <div class="models-header"><br><br><br>
+                <h1>BMW Models</h1>
+                <p>Discover the Ultimate Driving Machine</p>
+            </div>
+
+            <div class="models-grid" id="models-container">
+                <!-- Car cards will be injected here by JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="watermark">❤️ from phani</p>
+    </footer>
+<audio id="car-sound" src="assets/sounddd.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+
+</html>
