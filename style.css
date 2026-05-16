@@ -691,12 +691,17 @@ footer {
     header.cinematic-header {
         padding: 20px;
     }
-
-    .text {
-        font-size: 16px;
-        letter-spacing: 4px;
-    }
-
+    body {
+    overflow-x: hidden;
+}
+.text {
+    font-size: 13px;
+    letter-spacing: 1px;
+    width: 100%;
+    padding: 0 35px;
+    line-height: 1.4;
+    text-align: center;
+}
     .bmw-logo {
         width: 30px;
     }
@@ -706,9 +711,11 @@ footer {
     }
 
     .hero-sub {
-        font-size: 3vw;
-        letter-spacing: 6px;
-    }
+    font-size: 3.5vw;
+    letter-spacing: 2px;
+    padding: 0 20px;
+    line-height: 1.6;
+}
 
     .split-layout {
         flex-direction: column-reverse;
@@ -719,7 +726,9 @@ footer {
     .cinematic-h2 {
         font-size: 10vw;
     }
-
+.story-section {
+    padding: 100px 20px;
+}
     .cinematic-p {
         font-size: 4vw;
         margin: 0 auto;
@@ -745,10 +754,10 @@ footer {
     }
 
     .models-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 10px;
+}
     .models-header-cinematic h2 {
         font-size: 8vw;
     }
@@ -766,19 +775,30 @@ footer {
     #overlay-name {
         font-size: 15vw;
     }
-
+.overlay-summary-text {
+    font-size: 4vw;
+    line-height: 1.8;
+    padding: 0 10px;
+}
     #overlay-engine {
         font-size: 3vw;
         letter-spacing: 4px;
     }
+    .overlay-detailed-specs {
+    grid-template-columns: 1fr;
+}
 
+.overlay-image-container {
+    width: 100%;
+}
     .stat-val {
         font-size: 8vw;
     }
 
     #close-overlay {
-        top: 20px;
-        right: 20px;
-        font-size: 40px;
-    }
+    top: 15px;
+    right: 15px;
+    font-size: 38px;
+    padding: 10px;
+}
 }
