@@ -87,7 +87,11 @@ header {
 
 /* Home View */
 #home-view {
+<<<<<<< HEAD
     background-image: url('assets/418259(1).jpg');
+=======
+    background-image: url('assets/418259 (1).jpg');
+>>>>>>> dc651d4851da82fb8d711c54d65cbff331462170
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
