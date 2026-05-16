@@ -1,9 +1,7 @@
 :root {
-    --bg-color: #050505;
+    --bg-color: #030303;
     --text-color: #ffffff;
-    --accent-color: #ffcc00; /* Yellow headlights accent */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent-color: #ffcc00;
 }
 
 * {
@@ -13,23 +11,154 @@
 }
 
 body {
-    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     overflow-x: hidden;
+    background: url('assets/418259 (1).jpg') center/cover no-repeat fixed;
+
 }
 
-header {
+/* Loader */
+#loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 40px;
+    height: 100vh;
+    background: url('assets/coool.png') center/93.7% no-repeat;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.5s ease;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-logo-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.loader-logo {
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+    transition: opacity 2s ease, filter 2s ease;
+}
+
+.headlights-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 150px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0;
+    transition: opacity 2s ease;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+.loader-text {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 4px;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 40px;
+    opacity: 0;
+}
+
+#ignite-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 15px 40px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1s;
+}
+
+#ignite-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.loader.active .loader-logo {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+.loader.active .headlights-glow {
+    opacity: 1;
+}
+
+.loader.active .loader-text {
+    animation: pulseText 2s infinite alternate;
+    opacity: 1;
+    color: #fff;
+}
+
+@keyframes pulseText {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Background Video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.3;
+    /* Dimmed for luxury dark feel */
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Layout */
+header.cinematic-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 30px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    z-index: 10000;
+    pointer-events: none;
 }
 
 .logo-text {
@@ -37,16 +166,10 @@ header {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    
+    pointer-events: auto;
 }
-.bmw-logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
-    margin-left: auto;
-}
-.text{
+
+.text {
     font-size: 32px;
     font-weight: 800;
     letter-spacing: 15px;
@@ -54,224 +177,608 @@ header {
     color: #ffffff;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-    
+
     background: linear-gradient(90deg, #ffffff, #b8b8b8, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     text-shadow:
-        0 0 10px rgba(255,255,255,0.2),
-        0 0 20px rgba(255,255,255,0.1);
+        0 0 10px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.1);
 
     transition: 0.3s ease;
 }
-.view {
+
+.text:hover {
+    letter-spacing: 20px;
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.bmw-logo {
+    width: 40px;
+    pointer-events: auto;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+    margin-left: auto;
+}
+
+#smooth-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.story-section {
     min-height: 100vh;
     width: 100%;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 5%;
 }
 
-.view.hidden {
+/* Hero */
+.hero-titles {
+    text-align: center;
+}
+
+.hero-heading {
+    font-size: 10vw;
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #fff 0%, #555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
+    transform: translateY(50px);
 }
 
-.view.active {
-    opacity: 1;
-    visibility: visible;
+.hero-sub {
+    margin-top: 30px;
+    font-size: 1.5vw;
+    font-weight: 300;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: #aaa;
+    opacity: 0;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+}
+
+.scroll-indicator span {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #888;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, #fff, transparent);
+    animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+    0% {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+
+    51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+}
+
+/* M3 Section */
+.split-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    align-items: center;
+    gap: 5vw;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.cinematic-h2 {
+    font-size: 5vw;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.cinematic-p {
+    font-size: 1.2vw;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #888;
+    max-width: 400px;
+}
+
+.image-content {
+    flex: 1.5;
     position: relative;
 }
 
-/* Home View */
-#home-view {
-<<<<<<< HEAD
-    background-image: url('assets/418259(1).jpg');
-=======
-    background-image: url('assets/418259 (1).jpg');
->>>>>>> dc651d4851da82fb8d711c54d65cbff331462170
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.image-content img {
+    width: 100%;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.8));
 }
 
-.hero-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.glass-btn {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.glass-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
-}
-
-.glass-btn img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Models View */
-#models-view {
-    padding: 100px 40px 80px;
-    background: radial-gradient(circle at top, #1a1a1a 0%, var(--bg-color) 100%);
-
-}
-
-.models-header {
+/* Specs Section */
+.specs-container {
     text-align: center;
-    margin-bottom: 50px;
-    position: fixed;
-position: sticky;
-top: 40px;
-z-index: 50;
-
-
-backdrop-filter: blur(18px);
-
-padding: 20px ;
+    width: 100%;
+    max-width: 1200px;
 }
 
-.models-header h1 {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #fff, #888);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+.specs-title {
+    font-size: 1.5vw;
+    font-weight: 300;
+    letter-spacing: 15px;
+    color: #666;
+    margin-bottom: 100px;
 }
 
-.models-header p {
+.specs-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spec-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 6vw;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.spec-unit {
+    font-size: 1.5vw;
+    font-weight: 300;
+    color: var(--accent-color);
+    margin-top: 10px;
+}
+
+.spec-label {
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 4px;
     color: #888;
-    font-size: 18px;
-    
-display: inline-block;
-padding: 10px 22px;
+}
 
-background: rgba(0,0,0,0.55);
-border: 1px solid rgba(255,255,255,0.08);
+/* Models */
+#scroll-4 {
+    align-items: flex-start;
+    padding-top: 100px;
+}
 
-border-radius: 999px;
+.fleet-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 150px;
+}
 
-backdrop-filter: blur(8px);
+.models-header-cinematic {
+    text-align: center;
+    width: 100%;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    padding: 30px 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-margin-top: 10px;
+.models-header-cinematic h2 {
+    font-size: 4vw;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.models-header-cinematic p {
+    font-size: 1.2vw;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: #888;
+    margin-top: 20px;
 }
 
 .models-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 180px;
-}
-
-.car-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    cursor: pointer;
-}
-
-.car-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    border-color: rgba(255, 204, 0, 0.3);
-}
-
-.card-img-container {
     width: 100%;
-    height: 200px;
-    overflow: hidden;
+    max-width: 1400px;
+    margin-top: 40px;
 }
 
-.card-img-container img {
+.cinematic-card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+    background: transparent;
+    padding: 40px 20px;
+    transition: transform 0.4s ease;
+}
+
+.cinematic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
 }
 
-.car-card:hover .card-img-container img {
+.cinematic-card:hover {
+    transform: translateY(-10px);
+}
+
+.cinematic-card:hover::before {
+    opacity: 1;
+}
+
+.cinematic-card img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    transform: scale(1);
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: brightness(0.8);
+}
+
+.cinematic-card:hover img {
     transform: scale(1.05);
+    filter: brightness(1);
 }
 
-.card-content {
-    padding: 24px;
+.card-info {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 30px;
 }
 
-.card-content h2 {
+.card-info h3 {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 12px;
+    letter-spacing: 2px;
 }
 
-.card-details {
+.card-info p {
+    font-size: 12px;
+    font-weight: 300;
+    color: #888;
+    letter-spacing: 4px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.cinematic-card:hover .card-info p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fullscreen Overlay */
+#car-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 20000;
+    display: block;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+#car-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 2001;
+}
+
+#close-overlay {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 100;
+    cursor: pointer;
+    z-index: 2010;
+    transition: transform 0.3s ease;
+}
+
+#close-overlay:hover {
+    transform: scale(1.2);
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 2005;
+    text-align: center;
+    width: 100%;
+    padding: 100px 20px 100px 20px;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
 }
 
-.detail-item {
+#overlay-name {
+    font-size: 8vw;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    background: linear-gradient(180deg, #fff 0%, #333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#overlay-engine {
+    font-size: 1.5vw;
+    font-weight: 300;
+    letter-spacing: 10px;
+    color: #888;
+    margin-top: 20px;
+}
+
+.overlay-image-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.overlay-image-container img {
+    width: 100%;
+    filter: drop-shadow(0 30px 60px rgba(255, 255, 255, 0.1));
+}
+
+.overlay-stats {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 50px;
+}
+
+.overlay-stats .stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3vw;
+    font-weight: 700;
+}
+
+.stat-title {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.overlay-summary-text {
+    max-width: 800px;
+    margin: 40px auto 0 auto;
+    font-size: 1.1vw;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #bbb;
+    letter-spacing: 2px;
+}
+
+.overlay-detailed-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 50px auto 0 auto;
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+}
+
+.detail-row {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-label {
+    color: #888;
     font-size: 14px;
-    color: #aaa;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding-bottom: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.detail-item span:last-child {
+.detail-value {
     color: #fff;
+    font-size: 14px;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
-/* Footer */
 footer {
     position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 15px;
-    pointer-events: none;
+    bottom: 20px;
+    right: 40px;
     z-index: 100;
 }
 
 .watermark {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.3);
-    letter-spacing: 1px;
+    font-size: 10px;
+    font-weight: 500;
+    font-style: italic;
+    color: rgba(120, 170, 255, 1);
+    letter-spacing: 5px;
     text-transform: uppercase;
-}
-.text:hover{
-    letter-spacing: 20px;
+
     text-shadow:
-        0 0 15px rgba(255,255,255,0.4),
-        0 0 30px rgba(255,255,255,0.2);
+        0 0 5px rgba(120,170,255,0.8),
+        0 0 15px rgba(120,170,255,0.6);
+
+    opacity: 0.9;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    header.cinematic-header {
+        padding: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+
+    .bmw-logo {
+        width: 30px;
+    }
+
+    .hero-heading {
+        font-size: 15vw;
+    }
+
+    .hero-sub {
+        font-size: 3vw;
+        letter-spacing: 6px;
+    }
+
+    .split-layout {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .cinematic-h2 {
+        font-size: 10vw;
+    }
+
+    .cinematic-p {
+        font-size: 4vw;
+        margin: 0 auto;
+    }
+
+    .specs-grid {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .spec-value {
+        font-size: 15vw;
+    }
+
+    .spec-unit {
+        font-size: 4vw;
+    }
+
+    .specs-title {
+        font-size: 4vw;
+        letter-spacing: 8px;
+        margin-bottom: 50px;
+    }
+
+    .models-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .models-header-cinematic h2 {
+        font-size: 8vw;
+    }
+
+    .models-header-cinematic p {
+        font-size: 3vw;
+        letter-spacing: 4px;
+    }
+
+    .overlay-stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #overlay-name {
+        font-size: 15vw;
+    }
+
+    #overlay-engine {
+        font-size: 3vw;
+        letter-spacing: 4px;
+    }
+
+    .stat-val {
+        font-size: 8vw;
+    }
+
+    #close-overlay {
+        top: 20px;
+        right: 20px;
+        font-size: 40px;
+    }
 }

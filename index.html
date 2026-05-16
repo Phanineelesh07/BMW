@@ -4,45 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMW Showcase</title>
+    <title>BMW | The Ultimate Driving Machine</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Include Inter font for a modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Montserrat:wght@100;200;300;400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 </head>
 
 <body>
-    <header>
+    <!-- Audio Elements -->
+    <audio id="car-sound" src="assets/sounddd.mp3"></audio>
+    <audio id="hover-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-metallic-click-111.mp3"></audio>
+
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            
+                
+            <p class="loader-text">INITIALIZING DRIVING EXPERIENCE</p>
+            <button id="ignite-btn">IGNITE ENGINE</button>
+        </div>
+    </div>
+
+    <!-- Cinematic Background Video -->
+    <video id="bg-video" autoplay loop muted playsinline>
+        <source
+            src="https://assets.mixkit.co/videos/preview/mixkit-fast-cars-driving-on-a-highway-at-night-35430-large.mp4"
+            type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <header class="cinematic-header">
         <div class="logo-text"><a class="text" href="index.html">Bayerische Motoren Werke</a></div>
         <img src="assets/bmw_logo_1778868814240.png" alt="BMW Logo" class="bmw-logo">
     </header>
 
-    <main>
-        <!-- Home Screen -->  
-        <section id="home-view" class="view active">
-            <div class="hero-content">
-                <button id="enter-btn" class="glass-btn"> 
-                    <img src="assets/bmw_button_1778869030112.png" alt="Enter Symbol">
-                </button>
-            </div>
-        </section>
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+            <!-- Scroll 1: Hero -->
+            <section class="story-section" id="scroll-1">
+                <div class="hero-titles">
+                    <h1 class="hero-heading">PURE</h1>
+                    <h1 class="hero-heading">ADRENALINE.</h1>
+                    <p class="hero-sub">The Ultimate Driving Machine</p>
+                </div>
+                <div class="scroll-indicator">
+                    <span>SCROLL TO EXPLORE</span>
+                    <div class="line"></div>
+                </div>
+            </section>
 
-        <!-- Models Screen -->
-        <section id="models-view" class="view hidden">
-            <div class="models-header"><br><br><br>
-                <h1>BMW Models</h1>
-                <p>Discover the Ultimate Driving Machine</p>
-            </div>
+            <!-- Scroll 2: M3 Enters -->
+            <section class="story-section" id="scroll-2">
+                <div class="split-layout">
+                    <div class="text-content" id="m3-text">
+                        <h2 class="cinematic-h2">THE NEW M3</h2>
+                        <p class="cinematic-p">Born on the track. Built for the streets. A legacy of uncompromising
+                            performance continues.</p>
+                    </div>
+                    <div class="image-content" id="m3-image">
+                        <img src="assets/bmw_m3_1778869072989.png" alt="BMW M3">
+                    </div>
+                </div>
+            </section>
 
-            <div class="models-grid" id="models-container">
-                <!-- Car cards will be injected here by JS -->
-            </div>
-        </section>
+            <!-- Scroll 3: Specs -->
+            <section class="story-section" id="scroll-3">
+                <div class="specs-container">
+                    <h3 class="specs-title">UNBRIDLED POWER</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-value" data-target="473">0</span><span class="spec-unit">HP</span>
+                            <span class="spec-label">HORSEPOWER</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value" data-target="4.1">0.0</span><span class="spec-unit">SEC</span>
+                            <span class="spec-label">0-60 MPH</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value" data-target="155">0</span><span class="spec-unit">MPH</span>
+                            <span class="spec-label">TOP SPEED</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scroll 4: The Fleet -->
+            <section class="story-section" id="scroll-4">
+                <div class="fleet-container">
+                    <div class="models-header-cinematic">
+                        <h2>THE FLEET</h2>
+                        <p>SELECT YOUR MACHINE</p>
+                    </div>
+                    <div class="models-grid" id="models-container">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
+
+    <!-- Fullscreen Car Overlay -->
+    <div id="car-overlay" class="hidden" data-lenis-prevent>
+        <button id="close-overlay">×</button>
+        <div class="overlay-bg"></div>
+        <div class="overlay-content">
+            <h1 id="overlay-name">BMW M3</h1>
+            <p id="overlay-engine">3.0L Twin-Turbo I6</p>
+            <div class="overlay-image-container">
+                <img id="overlay-image" src="" alt="Car">
+            </div>
+            <div class="overlay-stats">
+                <div class="stat">
+                    <span class="stat-val" id="overlay-hp">473 hp</span>
+                    <span class="stat-title">POWER</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-val" id="overlay-060">4.1 s</span>
+                    <span class="stat-title">0-60</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-val" id="overlay-speed">155 mph</span>
+                    <span class="stat-title">SPEED</span>
+                </div>
+            </div>
+            <div class="overlay-detailed-specs" id="overlay-details">
+                <!-- Injected via JS -->
+            </div>
+            <p id="overlay-summary" class="overlay-summary-text"></p>
+        </div>
+    </div>
 
     <footer>
         <p class="watermark">❤️ from phani</p>
     </footer>
-<audio id="car-sound" src="assets/sounddd.mp3"></audio>
+
     <script src="script.js"></script>
 </body>
 
