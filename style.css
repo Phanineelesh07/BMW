@@ -75,7 +75,9 @@ body {
 
 #ignite-btn {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+   border: 2px solid rgba(255, 255, 255, 0.7);
+   box-shadow: 0 0 12px rgba(255,255,255,0.15);
+   backdrop-filter: blur(4px);
     color: #fff;
     padding: 15px 40px;
     font-family: 'Orbitron', sans-serif;
@@ -170,14 +172,15 @@ header.cinematic-header {
 }
 
 .text {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: 15px;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 9px;
     text-transform: uppercase;
     color: #ffffff;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
-
+animation: cinematicGlow 3s infinite alternate,
+           flicker 6s infinite;
     background: linear-gradient(90deg, #ffffff, #b8b8b8, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -190,7 +193,7 @@ header.cinematic-header {
 }
 
 .text:hover {
-    letter-spacing: 20px;
+    
     text-shadow:
         0 0 15px rgba(255, 255, 255, 0.4),
         0 0 30px rgba(255, 255, 255, 0.2);
@@ -198,9 +201,21 @@ header.cinematic-header {
 
 .bmw-logo {
     width: 40px;
+    height:auto;
     pointer-events: auto;
     filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
-    margin-left: auto;
+   top:30px;
+   right:60px;
+   position: absolute;
+}
+.msport-logo{
+    width:90px;
+    height:auto;
+   pointer-events:auto;
+     filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+    left:60px;
+    top:30px;
+    position: absolute;
 }
 
 #smooth-wrapper {
@@ -221,12 +236,13 @@ header.cinematic-header {
 /* Hero */
 .hero-titles {
     text-align: center;
+    margin-top: 80px;
 }
 
 .hero-heading {
     font-size: 10vw;
     line-height: 0.9;
-    font-weight: 800;
+    font-weight: 650;
     letter-spacing: -2px;
     text-transform: uppercase;
     background: linear-gradient(180deg, #fff 0%, #555 100%);
@@ -239,7 +255,7 @@ header.cinematic-header {
 .hero-sub {
     margin-top: 30px;
     font-size: 1.5vw;
-    font-weight: 300;
+    font-weight: 450;
     letter-spacing: 12px;
     text-transform: uppercase;
     color: #aaa;
@@ -249,6 +265,8 @@ header.cinematic-header {
 .scroll-indicator {
     position: absolute;
     bottom: 50px;
+    font-weight:680;
+    
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -259,7 +277,7 @@ header.cinematic-header {
 }
 
 .scroll-indicator span {
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 4px;
     color: #888;
 }
@@ -275,11 +293,20 @@ header.cinematic-header {
     0% {
         transform: scaleY(0);
         transform-origin: top;
+          opacity: 0.85;
+        text-shadow:
+            0 0 5px rgba(255,255,255,0.2),
+            0 0 10px rgba(255,255,255,0.2);
     }
 
     50% {
         transform: scaleY(1);
         transform-origin: top;
+         opacity: 1;
+        text-shadow:
+            0 0 10px rgba(255,255,255,0.5),
+            0 0 25px rgba(255,255,255,0.4),
+            0 0 40px rgba(255,255,255,0.2);
     }
 
     51% {
@@ -290,7 +317,20 @@ header.cinematic-header {
     100% {
         transform: scaleY(0);
         transform-origin: bottom;
+        opacity: 0.9;
+        text-shadow:
+            0 0 8px rgba(255,255,255,0.3),
+            0 0 18px rgba(255,255,255,0.2);
     }
+
+        0%,18%,22%,25%,53%,57%,100% {
+        opacity: 1;
+    }
+
+    20%,24%,55% {
+        opacity: 0.75;
+    }
+
 }
 
 /* M3 Section */
@@ -315,7 +355,7 @@ header.cinematic-header {
 
 .cinematic-p {
     font-size: 1.2vw;
-    font-weight: 300;
+    font-weight: 630;
     line-height: 1.8;
     color: #888;
     max-width: 400px;
@@ -340,10 +380,10 @@ header.cinematic-header {
 
 .specs-title {
     font-size: 1.5vw;
-    font-weight: 300;
-    letter-spacing: 15px;
+    font-weight: 600;
+    letter-spacing: 17px;
     color: #666;
-    margin-bottom: 100px;
+    margin-bottom: 350px;
 }
 
 .specs-grid {
@@ -374,7 +414,8 @@ header.cinematic-header {
 
 .spec-label {
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight: 600;
     letter-spacing: 4px;
     color: #888;
 }
@@ -409,13 +450,13 @@ header.cinematic-header {
 
 .models-header-cinematic h2 {
     font-size: 4vw;
-    font-weight: 800;
+    font-weight: 1000;
     letter-spacing: 5px;
 }
 
 .models-header-cinematic p {
     font-size: 1.2vw;
-    font-weight: 300;
+    font-weight: 900;
     letter-spacing: 8px;
     color: #888;
     margin-top: 20px;
@@ -489,10 +530,10 @@ header.cinematic-header {
 }
 
 .card-info p {
-    font-size: 12px;
-    font-weight: 300;
-    color: #888;
-    letter-spacing: 4px;
+    font-size: 15px;
+    font-weight: 530;
+    color: #b8b8b8;
+    letter-spacing: 5px;
     margin-top: 10px;
     opacity: 0;
     transform: translateY(10px);
@@ -615,8 +656,8 @@ header.cinematic-header {
 }
 
 .stat-title {
-    font-size: 12px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight: 532;
     letter-spacing: 4px;
     color: #666;
     margin-top: 10px;
@@ -625,8 +666,8 @@ header.cinematic-header {
 .overlay-summary-text {
     max-width: 800px;
     margin: 40px auto 0 auto;
-    font-size: 1.1vw;
-    font-weight: 300;
+    font-size: 14px;
+    font-weight: 530;
     line-height: 1.8;
     color: #bbb;
     letter-spacing: 2px;
@@ -648,18 +689,21 @@ header.cinematic-header {
     justify-content: space-between;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 25px;
+align-items: center;
 }
 
 .detail-label {
     color: #888;
     font-size: 14px;
-    letter-spacing: 2px;
+    font-weight: 532;
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .detail-value {
     color: #fff;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -672,7 +716,7 @@ footer {
 }
 
 .watermark {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 500;
     font-style: italic;
     color: rgba(120, 170, 255, 1);

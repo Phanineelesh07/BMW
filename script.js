@@ -86,6 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
           .to('.hero-sub', { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.5")
           .to('.scroll-indicator', { opacity: 1, duration: 1 }, "-=0.5");
 
+gsap.to('.logo-text', {
+    opacity: 0,
+    y: -40,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: '#scroll-1',
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
         // M3 Section Reveal
         gsap.from('#m3-image img', {
             x: 200, opacity: 0, duration: 1.5,
@@ -160,16 +171,16 @@ document.addEventListener('DOMContentLoaded', () => {
     igniteBtn.addEventListener('click', () => {
         // Play Startup Sound
         if(carSound) carSound.play().catch(e => console.log('Audio error:', e));
-        
+        window.scrollTo(0, 0);
         loader.classList.add('active');
         igniteBtn.style.display = 'none';
         
         setTimeout(() => {
-            gsap.to(loader, { opacity: 0, duration: 1.5, onComplete: () => {
+            gsap.to(loader, { opacity: 0, duration: 1, onComplete: () => {
                 loader.style.display = 'none';
                 initAnimations();
             }});
-        }, 2500);
+        }, 1000);
     });
 
     // Populate Models
@@ -198,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeOverlayBtn = document.getElementById('close-overlay');
     
     function openOverlay(car) {
+        overlay.scrollTop = 0;
         document.getElementById('overlay-name').textContent = car.name;
         document.getElementById('overlay-engine').textContent = car.engine;
         document.getElementById('overlay-image').src = car.image;
